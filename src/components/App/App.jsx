@@ -1,4 +1,6 @@
 import { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addContact, deleteContact, filterList } from "./actions";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
@@ -7,6 +9,9 @@ import { nanoid } from "nanoid";
 import { Application, ApplicationTitle, ListTitle } from "./App.styled";
 
 const App = () => {
+  // const dispatch = useDispatch();
+  // const newContacts = useSelector(state => state.contacts);
+
   const [contacts, setContacts] = useLocalStorage('contacts', []);
   const [filter, setFilter] = useState('');
 
