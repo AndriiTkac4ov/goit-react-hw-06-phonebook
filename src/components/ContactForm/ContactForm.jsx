@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { Form, LabelField, InputField, ButtonAdding } from "./ContactForm.styled";
 
-const ContactFormByHooks = ({ onSubmit }) => {
+const ContactForm = ({ onSubmit }) => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
@@ -66,8 +66,8 @@ const ContactFormByHooks = ({ onSubmit }) => {
     )
 }
 
-ContactFormByHooks.propTypes = {
+ContactForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 }
 
-export default ContactFormByHooks;
+export default ContactForm;

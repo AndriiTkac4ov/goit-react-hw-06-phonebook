@@ -1,7 +1,9 @@
-import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addContact, deleteContact, filterList } from "./actions";
-import useLocalStorage from "../../hooks/useLocalStorage";
+// import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getContacts, getFilter } from "../../redux/selectors";
+import { addContact, deleteContact } from "../../redux/contactsSlice";
+import { filterList } from "../../redux/filterSlice";
+// import useLocalStorage from "../../hooks/useLocalStorage";
 import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
 import Filter from "../Filter/Filter";
@@ -9,17 +11,18 @@ import { nanoid } from "nanoid";
 import { Application, ApplicationTitle, ListTitle } from "./App.styled";
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const newContacts = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
 
-  const [contacts, setContacts] = useLocalStorage('contacts', []);
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useLocalStorage('contacts', []);
+  // const [filter, setFilter] = useState('');
 
   const isContactNameInList = contactName => {
     return contacts.find(contact => contact.name === contactName);
   }
 
-  const addContact = ( name, number, reset) => {
+  const addContactToList = ( name, number, reset) => {
     if (isContactNameInList(name)) {
       alert(`${name} is already in contacts.`);
       return;
@@ -31,20 +34,18 @@ const App = () => {
       number,
     };
 
-    setContacts(prev => (
-      [newContact, ...prev]
-    ));
+    dispatch(addContact(newContact));
 
     reset();
   }
 
-  const deleteContact = userId => {
-    setContacts(prevState => prevState.filter(({ id }) => id !== userId));
+  const deleteContactFromList = userId => {
+    dispatch(deleteContact(userId));
   }
 
 // Filter Zone
   const changeFilter = event => {
-    setFilter(event.currentTarget.value);
+    dispatch(filterList(event.currentTarget.value));
   }
 
   const getFilteredContacts = () => {
@@ -59,7 +60,7 @@ const App = () => {
     <Application>
       <ApplicationTitle>Phonebook</ApplicationTitle>
       <ContactForm
-        onSubmit={addContact}
+        onSubmit={addContactToList}
       />
 
       <ListTitle>Contacts</ListTitle>
@@ -69,7 +70,7 @@ const App = () => {
       />
       <ContactList
         contacts={filteredContacts}
-        onDelete={deleteContact}
+        onDelete={deleteContactFromList}
       />
     </Application>
   )
