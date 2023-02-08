@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
-import { getContacts, getFilter } from "../../redux/selectors";
+import { getContacts } from "../../redux/selectors";
 import { addContact } from "../../redux/contactsSlice";
-import { filterList } from "../../redux/filterSlice";
 import { Form, LabelField, InputField, ButtonAdding } from "./ContactForm.styled";
 
 const ContactForm = () => {
@@ -11,6 +10,7 @@ const ContactForm = () => {
     const [number, setNumber] = useState('');
 
     const contacts = useSelector(getContacts);
+    console.log(contacts);
     const dispatch = useDispatch();
 
     const handleInputChange = (event) => {
@@ -31,14 +31,14 @@ const ContactForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const isContactNameInList = contactName => {
-            return contacts.find(contact => contact.name === contactName);
-        }
+        // const isContactNameInList = contactName => {
+        //     return contacts.find(contact => contact.name === contactName);
+        // }
         
-        if (isContactNameInList(name)) {
-            alert(`${name} is already in contacts.`);
-            return;
-        };
+        // if (isContactNameInList(name)) {
+        //     alert(`${name} is already in contacts.`);
+        //     return;
+        // };
 
         const newContact = {
             id: nanoid(),

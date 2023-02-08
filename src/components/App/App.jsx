@@ -1,22 +1,22 @@
 // import useLocalStorage from "../../hooks/useLocalStorage";
 import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
-import Filter from "../Filter/Filter";
+// import Filter from "../Filter/Filter";
 import { Application, ApplicationTitle, ListTitle } from "./App.styled";
 
 const App = () => {
 // Filter Zone
-  const changeFilter = event => {
-    (filterList(event.currentTarget.value));
-  }
+  // const changeFilter = event => {
+  //   (filterList(event.currentTarget.value));
+  // }
 
-  const getFilteredContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+  // const getFilteredContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
-  }
+  //   return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+  // }
 
-  const filteredContacts = getFilteredContacts();
+  // const filteredContacts = getFilteredContacts();
 
   return (
     <Application>
@@ -24,13 +24,11 @@ const App = () => {
       <ContactForm />
 
       <ListTitle>Contacts</ListTitle>
-      <Filter
+      {/* <Filter
         value={filter}
         onChange={changeFilter}
-      />
-      <ContactList
-        contacts={filteredContacts}
-      />
+      /> */}
+      <ContactList />
     </Application>
   )
 }
