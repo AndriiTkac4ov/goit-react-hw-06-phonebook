@@ -1,7 +1,7 @@
 // import useLocalStorage from "../../hooks/useLocalStorage";
 import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
-// import Filter from "../Filter/Filter";
+import Filter from "../Filter/Filter";
 import { Application, ApplicationTitle, ListTitle } from "./App.styled";
 
 const App = () => {
@@ -24,10 +24,10 @@ const App = () => {
       <ContactForm />
 
       <ListTitle>Contacts</ListTitle>
-      {/* <Filter
-        value={filter}
-        onChange={changeFilter}
-      /> */}
+      <Filter
+        // value={filter}
+        // onChange={changeFilter}
+      />
       <ContactList />
     </Application>
   )
