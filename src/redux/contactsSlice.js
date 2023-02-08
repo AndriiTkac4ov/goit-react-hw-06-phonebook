@@ -14,8 +14,8 @@ const contactsSlice = createSlice({
         addContact(state, action) {
             state.contactsGroup.push(action.payload)
         },
-        deleteTask(state, action) {
-            state.contactsGroup.filter(({ id }) => id !== action.payload)
+        deleteContact(state, action) {
+            state.contactsGroup = state.contactsGroup.filter(({ id }) => id !== action.payload)
         },
     },
 });
