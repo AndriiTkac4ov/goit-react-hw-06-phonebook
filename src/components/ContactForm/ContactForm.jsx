@@ -31,19 +31,19 @@ const ContactForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // const isContactNameInList = contactName => {
-        //     return contacts.find(contact => contact.name === contactName);
-        // }
-        
-        // if (isContactNameInList(name)) {
-        //     alert(`${name} is already in contacts.`);
-        //     return;
-        // };
-
         const newContact = {
             id: nanoid(),
             name,
             number,
+        };
+
+        const isContactNameInList = contactName => {
+            return contacts.find(contact => contact.name === contactName);
+        }
+        
+        if (isContactNameInList(name)) {
+            alert(`${name} is already in contacts.`);
+            return;
         };
 
         dispatch(addContact(newContact));
