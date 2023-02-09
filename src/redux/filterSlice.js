@@ -10,7 +10,7 @@ const filterSlice = createSlice({
   // Об'єкт редюсерів
     reducers: {
         filterList(state, action) {
-            action.payload.toLowerCase()
+          return state = action.payload.toLowerCase()
         },
     },
 });
